@@ -12,7 +12,7 @@ package esharebackserver;
  */
 public class Constants {
     
-    public static final String ROOT_DIR = System.getProperty("user.home")+"/EShareback/";
+    public static final String ROOT_DIR = System.getProperty("user.home")+"/EShareback";
     
     public static final int FILE_RECV_PORT = 8110;
     public static final int LS_PORT = 8103;
@@ -23,4 +23,6 @@ public class Constants {
             
     public final static String ERR_PORT = "Port Not Available: ";
     public final static String ERR_JSON = "Improper JSON format: ";
+    
+    public static final String END_OF_MSG = "iluvuanand#wtf";
 }

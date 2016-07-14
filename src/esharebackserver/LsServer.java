@@ -29,7 +29,7 @@ public class LsServer {
     public static void main(String[] args) {
         //System.out.println(Constants.ROOT_DIR);
         //System.out.println(new LsServer().listDir(""));
-        //new LsServer();
+        (new LsServer()).myMain();
     }
     
     public void myMain(){
@@ -48,7 +48,9 @@ public class LsServer {
             
             while(true){
                 //Start Listening
+                System.out.println("Waiting...");
                 Socket skt = ss.accept();
+                System.out.println("Connection Accepted");
                 //-- Start Listening
 
                 //Receiving Dir Request
@@ -56,15 +58,19 @@ public class LsServer {
                 result = "";
                 String temp = "";
                 while((temp = br.readLine()) != null){
+                    if(temp.contains(Constants.END_OF_MSG)){
+                        temp = temp.replace(Constants.END_OF_MSG, "");
+                        result+=temp;
+                        break;
+                    }
                     result += temp;
                 }
+                System.out.println("Result: "+result);
                 //-- Receiving Dir Request
 
                 //Decode Dir
-                JSONObject main = null;
-                String path = "";
-                main = new JSONObject(result);
-                path = main.getString(Constants.JSON_LIST_DIR); 
+                JSONObject main = new JSONObject(result);
+                String path = main.getString(Constants.JSON_LIST_DIR); 
                 //-- Decode Dir
 
                 //Listing Files
@@ -76,7 +82,8 @@ public class LsServer {
                             new BufferedWriter(
                                     new OutputStreamWriter(skt.getOutputStream())
                             ), true);
-                out.println(response);
+                out.println(response + Constants.END_OF_MSG);
+                System.out.println("Response: "+response);
                 out.flush();
                 //-- Sending Response
             }
@@ -93,15 +100,6 @@ public class LsServer {
         catch (JSONException ex) {
                 String str = Constants.ERR_JSON + "\n\t" + result;
                 Logger.getLogger(LsServer.class.getName()).log(Level.SEVERE, str );
-        }
-        finally{
-            if(ss!=null){ 
-                try {
-                    ss.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(LsServer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
         }
         
     }
