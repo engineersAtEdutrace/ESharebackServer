@@ -37,7 +37,7 @@ public class DownloadFileClient {
         int readSize;
         String filePath="E://",fileName="newfile.mp4";
         try{   
-            skt = new Socket("127.0.0.1",Constants.PORT_DWNLD_FILE);
+            skt = new Socket("127.0.0.1",Constants.PORT_FILE_SEND);
             
             
             

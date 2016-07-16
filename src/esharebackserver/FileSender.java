@@ -3,34 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package esharebackserver.FileDownload;
+package esharebackserver;
 
-import esharebackserver.Constants;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
  * @author Anand Singh
  */
-public class DownloadFileServer {
-    public static void main(String[] args) {
-        (new DownloadFileServer()).mymain();
+public class FileSender {
+public static void main(String[] args) {
+        (new FileSender()).mymain();
     }
     
     public void mymain()
@@ -113,12 +104,11 @@ public class DownloadFileServer {
                     + "\n\tlsof -i :"+Constants.PORT_FILE_SEND+" | grep LISTEN | cut -d' ' -f2"
                     + "\nAnd Kill Process using command:"
                     + "\n\tkill -9 [PID_OF_PROCESS]\n\n";
-           Logger.getLogger(DownloadFileServer.class.getName()).log(Level.SEVERE, msg + "\n"+ sol);
+           Logger.getLogger(FileSender.class.getName()).log(Level.SEVERE, msg + "\n"+ sol);
         } 
 //           catch (JSONException ex) {
 //            String str = Constants.ERR_JSON + "\n\t" + result;
 //            Logger.getLogger(DownloadFileServer.class.getName()).log(Level.SEVERE, str );
 //        }
-    }
-            
+    }    
 }
