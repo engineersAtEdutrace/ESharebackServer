@@ -44,7 +44,7 @@ public class LsServer {
         
         try {
             
-            ss = new ServerSocket(Constants.LS_PORT);
+            ss = new ServerSocket(Constants.PORT_LS);
             
             while(true){
                 //Start Listening
@@ -90,9 +90,9 @@ public class LsServer {
         
             
         } catch (IOException ex) {
-            String msg = "\n\n**"+Constants.ERR_PORT + Constants.LS_PORT+"**";
+            String msg = "\n\n**"+Constants.ERR_PORT + Constants.PORT_LS+"**";
             String sol = "SOLUTION: Find [PID_OF_PROCESS] running on port using command:"
-                    + "\n\tlsof -i :"+Constants.LS_PORT+" | grep LISTEN | cut -d' ' -f2"
+                    + "\n\tlsof -i :"+Constants.PORT_LS+" | grep LISTEN | cut -d' ' -f2"
                     + "\nAnd Kill Process using command:"
                     + "\n\tkill -9 [PID_OF_PROCESS]\n\n";
             Logger.getLogger(FileReceiver.class.getName()).log(Level.SEVERE, msg + "\n"+ sol);
@@ -113,8 +113,15 @@ public class LsServer {
             
 //            ArrayList<String> fileList=new ArrayList<String>();
 //            ArrayList<String> dirList=new ArrayList<String>();
-    
+
+           
             File f = new File(Constants.ROOT_DIR + path);
+            
+            //if the selected item is file dwnld it else list dir's and file's within it
+            
+            if(f.isFile())
+                //download
+                
             for(File innerf: f.listFiles()){
                 if(innerf.isFile()){
                     files.put(innerf.getName());
