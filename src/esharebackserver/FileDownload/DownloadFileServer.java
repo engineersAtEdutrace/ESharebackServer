@@ -54,7 +54,7 @@ public class DownloadFileServer {
 //        byte fileName = ;
         
         try{
-             ss = new ServerSocket(Constants.PORT_DWNLD_FILE);
+             ss = new ServerSocket(Constants.PORT_FILE_S2C);
              
              while(true){
                 //Start Listening
@@ -107,9 +107,9 @@ public class DownloadFileServer {
             } //end of while
                     
         }catch(IOException ex){
-            String msg = "\n\n**"+Constants.ERR_PORT + Constants.PORT_DWNLD_FILE+"**";
+            String msg = "\n\n**"+Constants.ERR_PORT + Constants.PORT_FILE_S2C+"**";
             String sol = "SOLUTION: Find [PID_OF_PROCESS] running on port using command:"
-                    + "\n\tlsof -i :"+Constants.PORT_DWNLD_FILE+" | grep LISTEN | cut -d' ' -f2"
+                    + "\n\tlsof -i :"+Constants.PORT_FILE_S2C+" | grep LISTEN | cut -d' ' -f2"
                     + "\nAnd Kill Process using command:"
                     + "\n\tkill -9 [PID_OF_PROCESS]\n\n";
            Logger.getLogger(DownloadFileServer.class.getName()).log(Level.SEVERE, msg + "\n"+ sol);

@@ -65,7 +65,7 @@ public class LsServer {
                     }
                     result += temp;
                 }
-                System.out.println("Result: "+result);
+                System.out.println("Request: "+result);
                 //-- Receiving Dir Request
 
                 //Decode Dir
@@ -111,24 +111,19 @@ public class LsServer {
             JSONArray dirs = new JSONArray();
             JSONArray files = new JSONArray();
             
-//            ArrayList<String> fileList=new ArrayList<String>();
-//            ArrayList<String> dirList=new ArrayList<String>();
+            ArrayList<String> fileList=new ArrayList<String>();
+            ArrayList<String> dirList=new ArrayList<String>();
 
            
             File f = new File(Constants.ROOT_DIR + path);
             
             //if the selected item is file dwnld it else list dir's and file's within it
-            
-            if(f.isFile())
-                //download
                 
             for(File innerf: f.listFiles()){
                 if(innerf.isFile()){
                     files.put(innerf.getName());
-                    //fileList.add(innerf.getName());
                 }else{
                     dirs.put(innerf.getName());
-                    //dirList.add(innerf.getName());
                 }
             }
             

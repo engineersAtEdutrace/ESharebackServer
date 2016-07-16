@@ -14,9 +14,9 @@ public class Constants {
     
     public static final String ROOT_DIR = System.getProperty("user.home")+"/EShareback";
     
-    public static final int PORT_FILE_RECV = 8110;
+    public static final int PORT_FILE_C2S = 8110;
     public static final int PORT_LS = 8103;
-    public static final int PORT_FILE_SEND=8104;
+    public static final int PORT_FILE_S2C=8104;
     
     public static final int BUFFER_SIZE=8192;
     
